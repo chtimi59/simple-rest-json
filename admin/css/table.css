@@ -1,0 +1,33 @@
+table {
+    margin: 5px;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #ccc;
+}
+
+th {
+    text-align: left;
+    padding: 8px;
+}
+
+td {
+    text-align: left;
+    padding-top: 0px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 0px;
+}
+
+td.id {
+    /*color: white;*/
+    /* color: blue; */
+    /*text-align: center;*/
+    /*background-color: #585a58;*/
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #585a58;
+    color: white;
+}

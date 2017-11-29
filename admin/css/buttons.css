@@ -1,0 +1,13 @@
+.buttons a:link, a:visited {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 10px;
+    margin: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:link, a:visited {
+    color: blue;
+}
