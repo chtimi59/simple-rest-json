@@ -11,9 +11,9 @@ function doGet()
     $data = $row['data'];
     $api = "";
     $api .= "Get data: \n";
-    $api .= "curl ".$GLOBALS['CONFIG']['base_url']."?id=".$row['id']."\n";
+    $api .= "curl ".$GLOBALS['CONFIG']['base_url']."/?id=".$row['id']."\n";
     $api .= "Set data: \n";
-    $api .= "curl ".$GLOBALS['CONFIG']['base_url']."?id=".$row['id']."\n";
+    $api .= "curl ".$GLOBALS['CONFIG']['base_url']."/?id=".$row['id']."\n";
     echo "
     <html>
     <head>
