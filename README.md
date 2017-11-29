@@ -12,7 +12,7 @@ A Simple Json server
 
 In your 'www/' folder, clone this repo with:
 ```
-sudo git clone --recursive --branch release https://github.com/chtimi59/simple-rest-json.git simpleRest
+sudo git clone --recursive --branch release https://github.com/chtimi59/restjson.git restjson
 ```
 then go to [http://yourserver/simpleRest/setup/](http://yourserver/simpleRest/setup/) and follows the instructions,
 the process should end with the following prompt:
