@@ -111,16 +111,16 @@ if ($count != 0)
         foreach ($row as $key => $value) {
             switch($key)
             {
-                case 'id':
-                    $url = "'index.php?action=".ACTION_GET."&id=".$value."'";
+                case 'id': {
+                    $url = "index.php?action=".ACTION_GET."&id=".$value;
                     echo "
                         <td class='id'>
-                            <a href=$url
-                                target='popup'
-                                onclick=\"window.open($url,'popup','status=0,toolbar=0,location=0,menubar=0,directories=0,resizable=1,scrollbars=1,height=800,width=900,'); return false;\"
+                            <a href='$url' target='popup'
+                                onclick=\"window.open('$url','popup','status=0,toolbar=0,location=0,menubar=0,directories=0,resizable=1,scrollbars=1,height=910,width=900,'); return false;\"
                             >$value</a>
                         </td>\n";
                     break;
+                }
                 case 'data':
                     break;
                 default:
@@ -128,7 +128,13 @@ if ($count != 0)
             }
         }
         echo "<td class='buttons'>";
-        echo "<a href='index.php?action=".ACTION_DELETE."&id=".$row['id']."'>Delete</a>\n";   
+        $deleteurl = "index.php?action=".ACTION_DELETE."&id=".$row['id'];
+        echo "<a href='$deleteurl'>Delete</a>\n";
+        $easyurl = "easy.php/?id=".$row['id'];
+        echo "<a href='$easyurl' target='popup'
+            onclick=\"window.open('$easyurl','popup','status=0,toolbar=0,location=0,menubar=0,directories=0,resizable=1,scrollbars=1,height=500,width=900,'); return false;\"
+            >Wizz</a>\n";
+
         echo "</td>\n";
         echo "</tr>\n";
     }

@@ -10,12 +10,16 @@
     $json = json_decode($row['data']);
 
     $getTest = "";
-    $getTest .= "fetch('$url')\n";
+    $getTest .= "fetch('$url',\n";
+    $getTest .= "  { method: 'GET' })\n";
     $getTest .= "  .then(function(res) {\n";
     $getTest .= "     if (!res.ok) throw Error(res.statusText);\n";
     $getTest .= "     return res.json();\n";
-    $getTest .= "   })\n";
-    $getTest .= "  .then(function(data){ alert('Success'); console.log(data) })\n";
+    $getTest .= "  })\n";
+    $getTest .= "  .then(function(data){\n";
+    $getTest .= "     data = JSON.parse(data);\n";
+    $getTest .= "     alert('Success'); console.log(data)\n";
+    $getTest .= "  })\n";
     $getTest .= "  .catch(function(e){ alert(e); console.error(e) })\n";
 
     $postTest = "";
@@ -24,9 +28,12 @@
     $postTest .= "  .then(function(res) {\n";
     $postTest .= "        if (!res.ok) throw Error(res.statusText);\n";
     $postTest .= "        return res.json();\n";
-    $postTest .= "   })\n";
-    $postTest .= "  .then(function(data){ alert('Success'); console.log(data) })\r\n";
-    $postTest .= "  .catch(function(e){ alert(e); console.error(e) })\r\n";
+    $postTest .= "  })\n";
+    $postTest .= "  .then(function(data){\n";
+    $postTest .= "     data = JSON.parse(data);\n";
+    $postTest .= "     alert('Success'); console.log(data)\n";
+    $postTest .= "  })\n";
+    $postTest .= "  .catch(function(e){ alert(e); console.error(e) })\n";
 
     function code2html($code) {
         $str = htmlentities($code);
