@@ -130,7 +130,7 @@ if ($count != 0)
         echo "<td class='buttons'>";
         $deleteurl = "index.php?action=".ACTION_DELETE."&id=".$row['id'];
         echo "<a href='$deleteurl'>Delete</a>\n";
-        $easyurl = "easy.php/?id=".$row['id'];
+        $easyurl = "easy.php?id=".$row['id'];
         echo "<a href='$easyurl' target='popup'
             onclick=\"window.open('$easyurl','popup','status=0,toolbar=0,location=0,menubar=0,directories=0,resizable=1,scrollbars=1,height=500,width=900,'); return false;\"
             >Wizz</a>\n";

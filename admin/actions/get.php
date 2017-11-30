@@ -6,7 +6,7 @@
         echo("error");
         exit();
     }
-    $url = $GLOBALS['CONFIG']['base_url']."/?id=".$row['id'];
+    $url = $GLOBALS['CONFIG']['base_url']."api.php?id=".$row['id'];
     $json = json_decode($row['data']);
 
     $getTest = "";
