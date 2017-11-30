@@ -1,4 +1,9 @@
 <?php
+function commonHeader() {
+    Header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+    header('Access-Control-Allow-Origin: *');
+    header('Content-type: application/json');
+}
 
 function die_sqlerror($msg="") {
     $bt = debug_backtrace();
@@ -10,6 +15,7 @@ function die_sqlerror($msg="") {
     error_log($sql);
     error_log($err);
     header('HTTP/1.1 500 Internal error', true, 500);
+    commonHeader();
     exit($msg);
 }
 
@@ -21,6 +27,7 @@ function die_internal_error($msg="") {
     $dbg .= $msg;
     error_log($dbg);
     header('HTTP/1.1 500 Internal error', true, 500);
+    commonHeader();
     exit($msg);
 }
 
@@ -32,11 +39,13 @@ function die_bad_request($msg="") {
     $dbg .= $msg;
     error_log($dbg);
     header('HTTP/1.1 400 Bad Request', true, 400);
+    commonHeader();
     exit($msg);
 }
 
 function die_forbidden($msg="") {
     header('HTTP/1.1 403 Forbidden', true, 403);
+    commonHeader();
     exit($msg);
 }
 
@@ -82,4 +91,5 @@ $req = @mysql_query($sql) or die_sqlerror('database query error');
 $row = @mysql_fetch_assoc($req);
 if (!$row) die_bad_request('invalid id');
 header('HTTP/1.1 200 OK', true, 200);
+commonHeader();
 print json_encode($row['data']);
