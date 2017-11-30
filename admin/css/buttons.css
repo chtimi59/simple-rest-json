@@ -1,4 +1,4 @@
-.buttons a:link, a:visited {
+.buttons a:link, .buttons a:visited {
     background-color: #4CAF50;
     color: white;
     padding: 10px 10px;

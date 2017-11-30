@@ -1,6 +1,6 @@
 <?php
 if(!@include("../conf.php")) { echo("Setup missing"); die(); }
-$url = $GLOBALS['CONFIG']['base_url']."/?id=".$_GET['id'];
+$url = $GLOBALS['CONFIG']['base_url']."/api.php?id=".$_GET['id'];
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ $url = $GLOBALS['CONFIG']['base_url']."/?id=".$_GET['id'];
    }
   input {
     font-size: 4em;
-    padding: 0.2em;    
+    padding: 0.2em;
     font-family: sans-serif;
   }
   button {
