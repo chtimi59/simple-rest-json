@@ -10,18 +10,18 @@ define('ACTION_NONE',     0);
 define('ACTION_CREATE',   1);
 define('ACTION_DELETE',   2);
 define('ACTION_GET',      3);
+define('ACTION_UPDATE',   4);
 
 /* various helpers */
 include('actions/helpers.php');
 /* actions on assets list */
 include('actions/create.php');
 include('actions/delete.php');
-include('actions/get.php');
+include('actions/update.php');
 
 /* default post/get values */
 if (!isset ($_GET['action']))        $_GET['action'] = ACTION_NONE;
 if (!isset ($_GET['id']))            $_GET['id'] = NULL;
-if (!isset ($_POST['id']))           $_POST['id'] = NULL;
 
 /* general user error message */
 $USERMSG_TYPE='sucess';
@@ -40,8 +40,11 @@ if(!mysql_select_db($GLOBALS['CONFIG']['sql_db'],$db)) die('Could not connect db
 switch($_GET['action']) {
     case ACTION_NONE:
         break;
+    case ACTION_UPDATE:
+        doUpdate(); exit();
+        break;
     case ACTION_GET:
-        doGet(); exit();
+        include('actions/get.php'); exit();
         break;
     case ACTION_CREATE:
         if (doCreate()) endOk();
@@ -114,7 +117,7 @@ if ($count != 0)
                         <td class='id'>
                             <a href=$url
                                 target='popup'
-                                onclick=\"window.open($url,'popup','width=600,height=600,scrollbars=no,resizable=no'); return false;\"
+                                onclick=\"window.open($url,'popup','status=0,toolbar=0,location=0,menubar=0,directories=0,resizable=1,scrollbars=1,height=800,width=900,'); return false;\"
                             >$value</a>
                         </td>\n";
                     break;

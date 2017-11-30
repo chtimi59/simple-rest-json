@@ -62,10 +62,15 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
     case 'PUT':
     case 'POST':
-        $json = file_get_contents('php://input');
-        $post_data = json_decode($json,true); // $post_data==NULL if not data
-        if ($post_data!=NULL) { $_POST=$post_data; } // overwrite POST
-        if (isset ($_POST['data'])) $_DATA=$_POST['data'];
+        $DATA = file_get_contents('php://input'); // obsolete?
+        if ($DATA == NULL && isset ($_POST['data'])) $DATA=['data'];
+        if ($DATA == NULL) die_bad_request('no data');
+        if (json_decode($DATA) == NULL) die_bad_request('invalid json');
+        $req = "UPDATE `".MYSQL_TABLE_ASSETS."` SET ";
+        $req .= "`data` = '".$DATA."', ";
+        $req .= "`lastChange` = CURRENT_TIMESTAMP ";
+        $req .= "WHERE `id`='".$_GET['id']."'";
+        @mysql_query($req) or die_sqlerror('database query error');
         break;
     default:
         die_bad_request('invalid method');
@@ -73,8 +78,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
 }
 
 $sql = "SELECT * FROM `".MYSQL_TABLE_ASSETS."` WHERE `id`='".$_GET['id']."'";
-$req = @mysql_query($sql) or sqldie($sql);  ;
+$req = @mysql_query($sql) or die_sqlerror('database query error');
 $row = @mysql_fetch_assoc($req);
 if (!$row) die_bad_request('invalid id');
 header('HTTP/1.1 200 OK', true, 200);
-print json_encode($row);
+print json_encode($row['data']);
